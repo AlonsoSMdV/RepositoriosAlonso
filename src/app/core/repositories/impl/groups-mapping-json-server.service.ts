@@ -5,18 +5,27 @@ import { Person } from "../../models/person.model";
 import { Group } from "../../models/group.model";
 
 export interface GroupRaw {
-    id: string
+    id?: string
     nombre: string
 }
 @Injectable({
     providedIn: 'root'
   })
   export class GroupsMappingJsonServer implements IBaseMapping<Group> {
-    setAdd(data: Group) {
-        throw new Error("Method not implemented.");
-    }
-    setUpdate(data: any) {
-        throw new Error("Method not implemented.");
+    setAdd(data: Group):GroupRaw {
+        return {
+            nombre:data.name
+    };
+}
+    setUpdate(data: Group):GroupRaw {
+        let toReturn:any = {};
+        Object.keys(data).forEach(key=>{
+            switch(key){
+                case 'name': toReturn['nombre']=data[key];
+                break;
+            }
+        });
+        return toReturn;
     }
     getPaginated(page:number, pageSize: number, pages:number, data:GroupRaw[]): Paginated<Group> {
         return {page:page, pageSize:pageSize, pages:pages, data:data.map<Group>((d:GroupRaw)=>{
@@ -25,7 +34,7 @@ export interface GroupRaw {
     }
     getOne(data: GroupRaw):Group {
         return {
-            id:data.id, 
+            id:data.id!, 
             name:data.nombre, 
         };
     }
