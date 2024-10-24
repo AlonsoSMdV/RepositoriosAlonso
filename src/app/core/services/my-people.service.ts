@@ -45,7 +45,8 @@ export class MyPeopleService{
                     picture:(d as any)["picture"]?{
                         large:(d as any)["picture"].large, 
                         thumbnail:(d as any)["picture"].thumbnail
-                    }:undefined};
+                    }:undefined,
+                gender: d.genero};
             })};
         }))
     }

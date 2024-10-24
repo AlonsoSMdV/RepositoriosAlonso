@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PeoplePageRoutingModule } from './people-routing.module';
 
 import { PeoplePage } from './people.page';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PeoplePageRoutingModule
-  ],
+    PeoplePageRoutingModule,
+    SharedModule
+],
   declarations: [PeoplePage]
 })
 export class PeoplePageModule {}

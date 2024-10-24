@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { AnimationController, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
+import { AlertController, AnimationController, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PersonModalComponent } from 'src/app/components/person-modal/person-modal.component';
 import { Paginated } from 'src/app/core/models/paginated.model';
@@ -17,6 +17,7 @@ export class PeoplePage implements OnInit {
   people$:Observable<Person[]> = this._people.asObservable();
 
   constructor(
+    private alertCtrl: AlertController,
     private animationCtrl: AnimationController,
     private peopleSvc:PeopleService,
     private modalCtrl:ModalController
@@ -135,6 +136,39 @@ export class PeoplePage implements OnInit {
 
   async onAddPerson(){
     await this.presentModalPerson('new');
+  }
+
+  deletePerson(id:string){
+    this.peopleSvc.delete(id).subscribe({
+      next:res=>{
+        this.refresh();
+      },
+      error:err=>{}
+    });
+    
+  }
+
+  async onDeletePersonConfirm(id:string){
+    const alert = await this.alertCtrl.create({
+      header: 'ATENCIÓN',
+      message: '¿Desea borrar este usuario?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler:() =>{
+            this.deletePerson(id)
+          }
+        },
+        {
+          text: 'No',
+          htmlAttributes: {
+            'aria-label': 'close',
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
 }

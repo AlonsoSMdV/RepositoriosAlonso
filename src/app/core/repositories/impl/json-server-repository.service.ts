@@ -54,5 +54,12 @@ export class JsonServerRepositoryService<T extends Model> extends BaseRepository
         return this.mapping.getUpdated(res);
       }));
   }
+
+  override delete(id: string): Observable<T> {
+    return this.http.delete<T>(
+      `${this.apiUrl}/${this.resource}/${id}`).pipe(map(res=>{
+        return this.mapping.getDeleted(res);
+      }));
+  }
   
 }

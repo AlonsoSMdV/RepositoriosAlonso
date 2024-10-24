@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { GroupsPageRoutingModule } from './groups-routing.module';
 
 import { GroupsPage } from './groups.page';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GroupsPageRoutingModule
-  ],
+    GroupsPageRoutingModule,
+    SharedModule
+],
   declarations: [GroupsPage]
 })
 export class GroupsPageModule {}
