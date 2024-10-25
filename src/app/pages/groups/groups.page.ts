@@ -60,7 +60,9 @@ export class GroupsPage implements OnInit {
   }
 
   async openGroupDetail(Group: any, index: number) {
+    await this.presentModalGroups('edit', Group);
     this.selectedGroup = Group;
+    /*
     const avatarElements = this.avatars.toArray();
     const clickedAvatar = avatarElements[index].nativeElement;
 
@@ -94,6 +96,7 @@ export class GroupsPage implements OnInit {
 
     // Resetear la animación después de completarla
     //this.isAnimating = false;
+    */
   }
 
   onIonInfinite(ev:InfiniteScrollCustomEvent) {
@@ -149,7 +152,7 @@ export class GroupsPage implements OnInit {
   async onDeleteGroupsConfirm(id:string){
     const alert = await this.alertCtrl.create({
       header: 'ATENCIÓN',
-      message: '¿Desea borrar este usuario?',
+      message: '¿Desea borrar este grupo?',
       buttons: [
         {
           text: 'Yes',
