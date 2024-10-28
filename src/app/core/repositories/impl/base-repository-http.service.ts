@@ -14,6 +14,7 @@ import { Paginated } from '../../models/paginated.model';
 })
 export class BaseRepositoryHttpService<T extends Model> implements IBaseRepository<T> {
 
+
   constructor(
     protected http: HttpClient,
     @Inject(API_URL_TOKEN) protected apiUrl: string, // URL base de la API para el modelo
@@ -23,7 +24,7 @@ export class BaseRepositoryHttpService<T extends Model> implements IBaseReposito
     this.apiUrl = apiUrl;
   }
 
-  getAll(page:number, pageSize:number): Observable<Paginated<T>> {
+  getAll(page:number, pageSize:number): Observable<T[] | Paginated<T>> {
     return this.http.get<T[]>(`${this.apiUrl}/${this.resource}`).pipe(map(res=>this.mapping.getPaginated(page, pageSize, 0, res)));
   }
 
