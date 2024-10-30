@@ -38,14 +38,14 @@ export interface GroupRaw {
             name:data.nombre, 
         };
     }
-    getAdded(data: any):Person {
-        throw new Error("Method not implemented.");
+    getAdded(data: GroupRaw):Group {
+        return this.getOne(data);
     }
-    getUpdated(data: any):Person {
-        throw new Error("Method not implemented.");
+    getUpdated(data: GroupRaw):Group {
+        return this.getOne(data);
     }
-    getDeleted(data: any):Person {
-        throw new Error("Method not implemented.");
+    getDeleted(data: GroupRaw):Group {
+        return this.getOne(data);
     }
   }
   
