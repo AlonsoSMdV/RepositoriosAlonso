@@ -6,17 +6,17 @@ import { Group } from 'src/app/core/models/group.model';
 
 @Component({
   selector: 'app-group-selectable',
-  templateUrl: './group-selectable.component.html',
-  styleUrls: ['./group-selectable.component.scss'],
+  templateUrl: './group-selectable-backup.component.html',
+  styleUrls: ['./group-selectable-backup.component.scss'],
   providers:[
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(()=>GroupSelectableComponent),
+      useExisting: forwardRef(()=>GroupSelectableBackupComponent),
       multi:true
     }
   ]
 })
-export class GroupSelectableComponent  implements OnInit, ControlValueAccessor {
+export class GroupSelectableBackupComponent  implements OnInit, ControlValueAccessor {
 
   private _groups:BehaviorSubject<Group[]> = new BehaviorSubject<Group[]>([]);
   public groups$:Observable<Group[]> = this._groups.asObservable();
@@ -46,7 +46,9 @@ export class GroupSelectableComponent  implements OnInit, ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    throw new Error('Method not implemented.');
+  }
 
   onSelectionChange(event:any){
     this.selectedGroupId = event.detail.value;
