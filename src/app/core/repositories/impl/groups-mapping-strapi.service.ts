@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { IBaseMapping } from "../intefaces/base-mapping.interface";
-import { Paginated } from "../../models/paginated.model";
 import { Group } from "../../models/group.model";
+import { Paginated } from "../../models/paginated.model";
+import { IBaseMapping } from "../intefaces/base-mapping.interface";
 
 export interface GroupRaw {
     data: Data
@@ -60,8 +60,8 @@ export interface Meta {}
     }
     getOne(data: Data):Group {
         return {
-            id:data?.id? data.id.toString(): '', 
-            name:data?.attributes?.name || ''
+            id:data.id.toString(), 
+            name:data.attributes.name
         };
     }
     getAdded(data: GroupRaw):Group {

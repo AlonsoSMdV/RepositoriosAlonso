@@ -84,10 +84,7 @@ export class StrapiRepositoryService<T extends Model> extends BaseRepositoryHttp
   }
 
   override delete(id: string): Observable<T> {
-    return this.http.delete<T>(
-      `${this.apiUrl}/${this.resource}/${id}`).pipe(map(res=>{
-        return this.mapping.getDeleted(res);
-      }));
+    return this.http.delete<T>(`${this.apiUrl}/${this.resource}/${id}`).pipe(map(res=>this.mapping.getDeleted(res)));
   }
   
 }
