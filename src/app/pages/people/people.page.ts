@@ -60,6 +60,7 @@ export class PeoplePage implements OnInit {
   isAnimating = false;
   page:number = 1;
   pageSize:number = 25;
+  pages:number = 0;
 
 
   refresh(){
@@ -68,17 +69,24 @@ export class PeoplePage implements OnInit {
       next:(response:Paginated<Person>)=>{
         this._people.next([...response.data]);
         this.page++;
+        this.pages = response.pages;
       }
     });
   }
+
   getMorePeople(notify:HTMLIonInfiniteScrollElement | null = null) {
-    this.peopleSvc.getAll(this.page, this.pageSize).subscribe({
-      next:(response:Paginated<Person>)=>{
-        this._people.next([...this._people.value, ...response.data]);
-        this.page++;
-        notify?.complete();
-      }
-    });
+    if(this.page<=this.pages){
+      this.peopleSvc.getAll(this.page, this.pageSize).subscribe({
+        next:(response:Paginated<Person>)=>{
+          this._people.next([...this._people.value, ...response.data]);
+          this.page++;
+          notify?.complete();
+        }
+      });
+    }
+    else{
+      notify?.complete();
+    } 
   }
 
   async openPersonDetail(person: any, index: number) {
