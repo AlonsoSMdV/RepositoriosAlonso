@@ -60,7 +60,6 @@ export class PeoplePage implements OnInit {
   isAnimating = false;
   page:number = 1;
   pageSize:number = 25;
-  pages:number = 0;
 
 
   refresh(){
@@ -69,7 +68,6 @@ export class PeoplePage implements OnInit {
       next:(response:Paginated<Person>)=>{
         this._people.next([...response.data]);
         this.page++;
-        this.pages = response.pages;
       }
     });
   }

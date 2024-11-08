@@ -12,7 +12,7 @@
       <ion-label class="ion-text-nowrap" >
         {{group.name}}
       </ion-label>
-      <ion-button class="ion-padding" (click)="$event.stopPropagation()"[id]="'button-delete-'+group.id" slot="end" color="danger" fill="clear">
+      <ion-button class="ion-padding" (click)="onDeleteGroupsConfirm(group.id); $event.stopPropagation()"[id]="'button-delete-'+group.id" slot="end" color="danger" fill="clear">
         <ion-icon style="font-size:1.5em" name="trash-outline"></ion-icon> 
       </ion-button>
     </ion-item>
