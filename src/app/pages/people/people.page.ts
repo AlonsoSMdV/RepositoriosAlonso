@@ -75,7 +75,6 @@ export class PeoplePage implements OnInit {
   }
 
   getMorePeople(notify:HTMLIonInfiniteScrollElement | null = null) {
-    if(this.page<=this.pages){
       this.peopleSvc.getAll(this.page, this.pageSize).subscribe({
         next:(response:Paginated<Person>)=>{
           this._people.next([...this._people.value, ...response.data]);
@@ -83,10 +82,6 @@ export class PeoplePage implements OnInit {
           notify?.complete();
         }
       });
-    }
-    else{
-      notify?.complete();
-    } 
   }
 
   async openPersonDetail(person: any, index: number) {

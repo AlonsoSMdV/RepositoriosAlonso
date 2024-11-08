@@ -5,6 +5,7 @@ import { ITasksRepository } from './intefaces/tasks-repository.interface';
 import { IPeopleRepository } from './intefaces/people-repository.interface';
 import { IBaseMapping } from './intefaces/base-mapping.interface';
 import { Person } from '../models/person.model';
+import { Group } from '../models/group.model';
 
 export const RESOURCE_NAME_TOKEN = new InjectionToken<string>('ResourceName');
 export const PEOPLE_RESOURCE_NAME_TOKEN = new InjectionToken<string>('PeopleResourceName');
@@ -21,4 +22,4 @@ export const TASKS_API_URL_TOKEN = new InjectionToken<string>('TasksApiUrl');
 
 export const REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<any>>('IBaseRepositoryMapping');
 export const PEOPLE_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<Person>>('IPeopleRepositoryMapping');
-export const GROUPS_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<Person>>('IGroupsRepositoryMapping');
+export const GROUPS_REPOSITORY_MAPPING_TOKEN = new InjectionToken<IBaseMapping<Group>>('IGroupsRepositoryMapping');
